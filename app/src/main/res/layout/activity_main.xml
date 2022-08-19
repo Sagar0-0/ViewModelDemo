@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="mainViewmodel"
-            type="com.example.android.lifecycleaware.MainViewModel" />
+            name="post"
+            type="com.example.android.lifecycleaware.Post" />
     </data>
 
     <LinearLayout
@@ -17,22 +17,31 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            imageFromUrl="@{post.url}"
+            tools:srcCompat="@tools:sample/avatars"/>
+
         <TextView
-            android:id="@+id/quote"
+            android:id="@+id/titletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{mainViewmodel.mutableLiveData}"
+            android:text="@{post.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/edittext"
-            android:text="@={mainViewmodel.mutableLiveData}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+        <TextView
+            android:id="@+id/desctext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{post.desc}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 </layout>
