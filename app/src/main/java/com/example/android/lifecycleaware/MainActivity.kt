@@ -1,27 +1,32 @@
 package com.example.android.lifecycleaware
 
-import android.os.Binder
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.example.android.lifecycleaware.databinding.ActivityMainBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-
+    lateinit var database: ContactDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        database= Room.databaseBuilder(applicationContext,
+        ContactDatabase::class.java,"contactDB").build()
+        database.getDao().getContacts().observe(this, Observer {
+            binding.titletext.text= it[it.size-1].name
+        })
 
-        val post= Post("SAGAR PROFILE PICTURE","THIS IS DESC of profile picture"
-            ,"https://avatars.githubusercontent.com/u/85388413?v=4")
-        binding.post=post
+        binding.btn.setOnClickListener {
+            GlobalScope.launch {
+                database.getDao().insertContact(Contact(0, "PILU", "98989898"))
+            }
+        }
+
     }
 
 }
