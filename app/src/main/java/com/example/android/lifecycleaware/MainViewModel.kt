@@ -7,11 +7,5 @@ import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 
 class MainViewModel : ViewModel() {
-    val mutableLiveData = MutableLiveData("This is a msg")
-    val liveData:LiveData<String>
-    get() = mutableLiveData
-
-    fun updateLiveData(msg:String){
-        mutableLiveData.value=msg
-    }
+    val mutableLiveData = MutableLiveData("")
 }
