@@ -18,10 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
-
-        val post= Post("SAGAR PROFILE PICTURE","THIS IS DESC of profile picture"
-            ,"https://avatars.githubusercontent.com/u/85388413?v=4")
-        binding.post=post
+        //get instance and then get objects using coroutines
     }
 
 }
